@@ -2,7 +2,7 @@ import googlemaps
 import pprint
 import time
 from keys.gmaps import key
-
+from firestore.firestore import readAllItems 
 # Define API key
 API_KEY = key()
 
@@ -18,15 +18,34 @@ def getNearbyStores(latitude, longitude, category, radius):
     location = str(latitude) + ',' + str(longitude)
     places_result =  gmaps.places_nearby(location=location, radius = radius, open_now=False,type = category)['results']
     pprint.pprint(places_result)
-    return getNearbyStores
+    return places_result
 
 # Defaults radius to 1000 meters
-def mobileGetNearby(latitude, longitude, query=None,category='store', radius=100):
+def mobileGetNearby(latitude, longitude, query=None,category='store', radius=1000):
     nearbyStores = getNearbyStores(latitude, longitude, category, radius)
+    output = {'stores':[]}
     for store in nearbyStores:
-    #if query is None or store['name'] == query:
-        print('----------------------')
-        print(store['name'])
-        print(store['place_id'])
+        if query is None or store['name'] == query:
+            items = readAllItems(store['place_id'])
+            output['stores'].append(
+            {
+                'name':store['name'],
+                'place_id':store['place_id'],
+                'vicinity':store['vicinity'],
+                'items':items,
+                'longitude':store['geometry']['location']['lng'],
+                'latitude':store['geometry']['location']['lat']
+            }
+        )
+    return output
+        
 
-mobileGetNearby(43.892719, -79.263153, 'store', 500)
+
+
+# output = mobileGetNearby(latitude=43.892719,longitude= -79.263153,query='Dollarama',category='store',radius=100)
+# print('--------------------')
+# print('--------------------')
+# print('--------------------')
+# print('--------------------')
+# print('--------------------')
+# pprint.pprint(output)

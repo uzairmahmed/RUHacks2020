@@ -50,6 +50,25 @@ def readItem(place_id, item_name):
     pprint(doc.to_dict())
     return doc.to_dict()
 
+# Fix to all
+def readAllItems(place_id):
+    output = []
+    try:
+        docs = db.collection(u'stores').document(place_id).collection(u'items').stream()
+        for doc in docs:
+            print(doc.id)
+            print(doc.to_dict())
+            output.append(
+            {
+                'name':doc.id,
+                'supply':doc.to_dict()['supply'],
+                'demand':doc.to_dict()['demand']
+            }
+        )
+    except:
+        print("Error 404")
+    return output
+
 # DELETE
 
 def deleteStore(place_id):

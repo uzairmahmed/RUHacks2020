@@ -8,14 +8,15 @@ app.config["DEBUG"] = True
 CORS(app)
 
 @app.route('/mobile/get-nearby/', methods=['GET'])
-def mobGetNearby()():
+def mobGetNearby():
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
     try:
         query = request.args.get('query')
-        mobileGetNearby(latitude=latitude, longitude=longitude, query=query)
+        response = mobileGetNearby(latitude=latitude, longitude=longitude, query=query)
     except:
-        mobileGetNearby(latitude=latitude, longitude=longitude)
+        response = mobileGetNearby(latitude=latitude, longitude=longitude)
+    return jsonify(response)
 
 
 app.run()
