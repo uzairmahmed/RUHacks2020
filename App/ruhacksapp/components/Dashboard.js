@@ -1,33 +1,87 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, Dimensions, Image, TouchableOpacity, TextInput } from 'react-native';
+import { Ionicons as Icon } from '@expo/vector-icons';
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import Geolocation from "react-native-geolocation-service";
 
-import MapView from 'react-native-maps';
+import Searchbar from "./SearchBar"
+import StoreItem from "./StoreItem"
 
 
 export default class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            latitude: 43.518444,
+            longitude: -79.824612,
+            coordinates: [],
+            markers: [
+                {
+                    latitude: 43.518444,
+                    longitude: -79.824612,
+                    title: "Marker"
+                }
+            ],
+        }
+    }
     static navigationOptions = {
         header: null,
     };
-    
+
+
+    componentDidMount() {
+        Geolocation.getCurrentPosition(
+            position => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    coordinates: this.state.coordinates.concat({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    })
+                });
+            },
+            error => {
+                Alert.alert(error.message.toString());
+            },
+            {
+                showLocationDialog: true,
+                enableHighAccuracy: true,
+                timeout: 20000,
+                maximumAge: 0
+            }
+        );
+    }
+
+
     render() {
         const { navigation } = this.props;
         return (
             <View style={styles.container}>
-                <MapView style={styles.mapStyle} />
-
-                <TouchableOpacity style={styles.storeContainer}>
-                    <Image
-                        style={styles.tinyLogo}
-                        source={require('../assets/user.jpg')}
-                    />
-                    <Text style={styles.title}>
-                        Store Name
-                    </Text>
-                    <Text style={styles.title}>
-                        Quantity
-                    </Text>
-                </TouchableOpacity>
-
+                <View style={styles.mapContainer}>
+                    <Searchbar />
+                    <MapView
+                        style={styles.mapStyle}
+                        region={{
+                            latitude: this.state.latitude,
+                            longitude: this.state.longitude,
+                            latitudeDelta: 0.0922,
+                            longitudeDelta: 0.0421,
+                        }}
+                    >
+                        <MapView.Marker
+                            coordinate={{
+                                latitude: 43.518444,
+                                longitude: -79.824612
+                            }}
+                            title={"title"}
+                            description={"description"}
+                        />
+                    </MapView>
+                </View>
+                <View style={styles.storeContainer}>
+                    <StoreItem />
+                </View>
             </View>
         )
     }
@@ -39,21 +93,21 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+    },
+    mapContainer: {
+        backgroundColor: "#eee",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "space-evenly"
     },
     storeContainer: {
         backgroundColor: "#eee",
         width: "100%",
-        flexDirection: "row",
         alignItems: "center",
-        justifyContent:"space-evenly"
     },
     mapStyle: {
         width: (Dimensions.get('window').width) * 0.95,
         height: 250,
-    },
-    tinyLogo: {
-        width: 50,
-        height: 50,
     },
 });
