@@ -3,6 +3,10 @@ import { View, Text, StyleSheet, Button, Image, TextInput } from 'react-native';
 
 
 export default class LoginPage extends React.Component {
+    static navigationOptions = {
+        header: null,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,9 +17,6 @@ export default class LoginPage extends React.Component {
 
     render() {
         const { navigation } = this.props;
-
-
-
         return (
             <View style={styles.container}>
 
@@ -24,11 +25,9 @@ export default class LoginPage extends React.Component {
                     source={require('../assets/user.jpg')}
                 />
 
-                <Text
-                    style={styles.title}>
-                    
+                <Text style={styles.title}>
                     Welcome Back!
-                    </Text>
+                </Text>
 
                 <TextInput
                     placeholder="Username."
@@ -55,14 +54,20 @@ export default class LoginPage extends React.Component {
 
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     title: {
-        fontSize:25
+        fontSize: 25
     },
     profileIcon: {
         width: 50,
         height: 50,
     },
     textInput: {
-        borderWidth:1
+        borderWidth: 1
     }
 });
