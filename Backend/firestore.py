@@ -63,8 +63,3 @@ def deleteItem(place_id, item_name):
     doc = doc_ref.get()
     doc_ref.delete()
     return doc.to_dict()
-
-# addStore('something', "Walmart", "Highway 7 and Ninth Line")
-# addItem('something', 'Nintendo Switch', 1)
-# readStore("something")
-deleteItem("something", "Nintendo Switch")
