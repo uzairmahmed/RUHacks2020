@@ -25,7 +25,7 @@ def addItem(place_id, item_name, supply):
 
 # UPDATE
 
-def adjustItem(place_id, item_name, delta_supply, delta_demand):
+def adjustItem(place_id, item_name, delta_supply=0, delta_demand=0):
     doc_ref = db.collection(u'stores').document(place_id).collection(u'items').document(item_name)
     doc = doc_ref.get()
     supply = doc.to_dict()['supply'] + delta_supply
