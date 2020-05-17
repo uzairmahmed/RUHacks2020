@@ -18,7 +18,7 @@ def mobGetNearby():
         response = mobileGetNearby(latitude=latitude, longitude=longitude)
     return jsonify(response)
 
-@app.route('/mobile/increment-demand/', methods=['GET'])
+@app.route('/mobile/increment-demand/', methods=['POST'])
 def mobIncrementDemand():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
@@ -37,13 +37,60 @@ def dashGetProducts():
     response = firestore.readAllItems(place_id)
     return jsonify(response)
     
-@app.route('/dashboard/increment-supply/', methods=['GET'])
+    
+@app.route('/dashboard/increment-supply/', methods=['POST'])
 def dashIncrementSupply():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
     response = {}
     try:
         firestore.adjustItem(place_id=place_id, item_name=item, delta_demand=0, delta_supply=1)
+        response['status']='Success'
+    except:
+        response['status']='Error 404'
+    return jsonify(response)
+
+@app.route('/dashboard/create-store/', methods=['POST'])
+def dashAddStore():
+    place_id = request.args.get('place_id')
+    response = {}
+    try:
+        firestore.addStore(place_id)
+        response['status']='Success'
+    except:
+        response['status']='Error 404'
+    return jsonify(response)
+
+@app.route('/dashboard/create-item/', methods=['POST'])
+def dashAddItem():
+    place_id = request.args.get('place_id')
+    item = request.args.get('item')
+    response = {}
+    try:
+        firestore.addItem(place_id=place_id, item_name=item)
+        response['status']='Success'
+    except:
+        response['status']='Error 404'
+    return jsonify(response)
+
+@app.route('/dashboard/delete-item/', methods=['DELETE'])
+def dashDeleteItem():
+    place_id = request.args.get('place_id')
+    item = request.args.get('item')
+    response = {}
+    try:
+        firestore.deleteItem(place_id=place_id, item_name=item)
+        response['status']='Success'
+    except:
+        response['status']='Error 404'
+    return jsonify(response)
+
+@app.route('/dashboard/delete-store/', methods=['DELETE'])
+def dashDeleteStore():
+    place_id = request.args.get('place_id')
+    response = {}
+    try:
+        firestore.deleteStore(place_id)
         response['status']='Success'
     except:
         response['status']='Error 404'
