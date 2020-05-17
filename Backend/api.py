@@ -3,11 +3,11 @@ from flask_cors import CORS
 from places import mobileGetNearby
 from firestore import firestore
 app = Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 CORS(app)
 
-@app.route('/mobile/get-nearby/', methods=['GET'])
+@app.route('/mobile/get-nearby/', methods=['POST'])
 def mobGetNearby():
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
@@ -18,33 +18,35 @@ def mobGetNearby():
         response = mobileGetNearby(latitude=latitude, longitude=longitude)
     return jsonify(response)
 
-@app.route('/mobile/increment-demand/', methods=['POST'])
-def mobIncrementDemand():
+@app.route('/mobile/update-demand/', methods=['POST'])
+def mobAdjustDemand():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
+    demand = request.args.get('demand')
     response = {}
     try:
-        firestore.adjustItem(place_id=place_id, item_name=item, delta_demand=1, delta_supply=0)
+        firestore.adjustItemDemand(place_id=place_id, item_name=item, demand=demand)
         response['status']='Success'
     except:
         response['status']='Error 404'
     return jsonify(response)
     
 
-@app.route('/dashboard/get-products/', methods=['GET'])
+@app.route('/dashboard/get-products/', methods=['POST'])
 def dashGetProducts():
     place_id = request.args.get('place_id')
     response = firestore.readAllItems(place_id)
     return jsonify(response)
     
     
-@app.route('/dashboard/increment-supply/', methods=['POST'])
-def dashIncrementSupply():
+@app.route('/dashboard/update-supply/', methods=['POST'])
+def dashAdjustSupply():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
+    supply = request.args.get('supply')
     response = {}
     try:
-        firestore.adjustItem(place_id=place_id, item_name=item, delta_demand=0, delta_supply=1)
+        firestore.adjustItemSupply(place_id=place_id, item_name=item, supply=supply)
         response['status']='Success'
     except:
         response['status']='Error 404'
@@ -73,7 +75,7 @@ def dashAddItem():
         response['status']='Error: Create Item Failed'
     return jsonify(response)
 
-@app.route('/dashboard/delete-item/', methods=['DELETE'])
+@app.route('/dashboard/delete-item/', methods=['POST'])
 def dashDeleteItem():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
@@ -85,7 +87,7 @@ def dashDeleteItem():
         response['status']='Error 404'
     return jsonify(response)
 
-@app.route('/dashboard/delete-store/', methods=['DELETE'])
+@app.route('/dashboard/delete-store/', methods=['POST'])
 def dashDeleteStore():
     place_id = request.args.get('place_id')
     response = {}
@@ -96,4 +98,5 @@ def dashDeleteStore():
         response['status']='Error 404'
     return jsonify(response)
 
-app.run()
+if __name__ == '__main__':
+    app.run()
