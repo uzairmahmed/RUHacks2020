@@ -10,7 +10,6 @@ export default class StoreItem extends React.Component {
     render() {
         var name = this.props.name
         var address = this.props.address
-        console.log(name)
         return (
             <TouchableOpacity style={styles.storeItem}>
                 <Image
