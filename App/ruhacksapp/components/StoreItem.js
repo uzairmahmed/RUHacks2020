@@ -4,7 +4,13 @@ import { Ionicons as Icon } from '@expo/vector-icons';
 
 
 export default class StoreItem extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
+        var name = this.props.name
+        var address = this.props.address
+        console.log(name)
         return (
             <TouchableOpacity style={styles.storeItem}>
                 <Image
@@ -12,11 +18,11 @@ export default class StoreItem extends React.Component {
                     source={require('../assets/user.jpg')} />
 
                 <Text style={styles.title}>
-                    Store Name
+                    {name}
                 </Text>
 
                 <Text style={styles.title}>
-                    Quantity
+                    {address}
                 </Text>
             </TouchableOpacity>
         )

@@ -27,7 +27,7 @@ export default class Searchbar extends React.Component {
                 <TouchableOpacity onPress={() => this.search()}>
                     <Icon
                         name="ios-search"
-                        size={20}
+                        size={25}
                         style={styles.icon}
                     />
                 </TouchableOpacity>
@@ -39,17 +39,18 @@ export default class Searchbar extends React.Component {
 
 const styles = StyleSheet.create({
     searchBar: {
-        backgroundColor: "#eee",
-        width: "97%",
+        backgroundColor: "#FFF",
+        width: "75%",
+        height:50,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly",
+        justifyContent: "center",
         borderRadius: 15,
-        opacity: 0.25,
+        opacity: 1,
     },
     icon: {
-        width: 50,
-        height: 50,
+        width: 25,
+        height: 25,
         alignItems: "center",
         justifyContent: "space-evenly",
     },

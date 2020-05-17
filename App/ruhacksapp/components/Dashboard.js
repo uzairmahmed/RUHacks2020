@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Button, Dimensions, Image, TouchableOpacity, TextInput, addons } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Dimensions, FlatList } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
@@ -15,17 +15,9 @@ export default class Dashboard extends React.Component {
         this.state = {
             mapRegion: null,
             loading: false,
-            data: [],
-            latitude: 0,
-            longitude: 0,
-            searchParameter:"EMPTY",
-            markers: [
-                {
-                    latitude: 43.518444,
-                    longitude: -79.824612,
-                    title: "Marker"
-                }
-            ],
+            searchParameter: "EMPTY",
+            markers: [],
+            stores: [],
         }
     }
 
@@ -82,14 +74,34 @@ export default class Dashboard extends React.Component {
             query: this.state.searchParameter
         }
         await this.instance.post('/mobile/get-nearby/', payload)
-          .then((response) => {
-            console.log(response.request.response);
-          }, (error) => {
-            console.log(error);
-          });
+            .then((response) => {
+                this.parseData(response.data.stores)
+            }, (error) => {
+                console.log(error);
+            });
     }
 
-
+    parseData(data) {
+        var i;
+        markerArray = []
+        valuesArray = []
+        for (i = 0; i < data.length; i++) {
+            markerArray.push({
+                longitude: data[i].longitude,
+                latitude: data[i].latitude,
+                title: data[i].name,
+                description: data[i].place_id
+            });
+            valuesArray.push({
+                key: data[i].place_id,
+                value: {
+                    title: data[i].name,
+                    address: data[i].vicinity
+                }});
+        }
+        this.setState({ markers: markerArray });
+        this.setState({ stores: valuesArray });
+    }
 
     render() {
         const { navigation } = this.props;
@@ -111,19 +123,34 @@ export default class Dashboard extends React.Component {
                         />
                         <MapView
                             style={styles.mapStyle}
-                            region={this.state.mapRegion}
+                            initialRegion={this.state.mapRegion}
                             onRegionChange={this.handleMapRegionChange}
+                            showsUserLocation
                         >
+                            {this.state.markers.map((marker, index) => (
+                                <MapView.Marker
+                                    key={index}
+                                    coordinate={{
+                                        latitude: marker.latitude,
+                                        longitude: marker.longitude
+                                    }}
+                                    title={marker.title}
+                                    description={marker.description}
+                                />
+                            ))
+                            }
                         </MapView>
                     </View>
                     <View style={styles.storeContainer}>
-                        <StoreItem />
-                        <StoreItem />
-                        <StoreItem />
-                        <StoreItem />
-                        <StoreItem />
-                        <StoreItem />
-                        <StoreItem />
+                        <FlatList
+                            style={styles.storeList}
+                            data={this.state.stores}
+                            renderItem={(itemData) =>
+                                <StoreItem
+                                    name={itemData.item.value.title}
+                                    address={itemData.item.value.address}
+                                />}
+                        />
                     </View>
                 </View>
             )
@@ -149,6 +176,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#27496d",
         width: "100%",
         alignItems: "center",
+    },
+    storeList: {
+        width: '100%'
     },
     mapStyle: {
         width: (Dimensions.get('window').width) * 0.95,
