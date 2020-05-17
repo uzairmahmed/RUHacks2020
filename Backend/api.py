@@ -18,13 +18,14 @@ def mobGetNearby():
         response = mobileGetNearby(latitude=latitude, longitude=longitude)
     return jsonify(response)
 
-@app.route('/mobile/increment-demand/', methods=['POST'])
-def mobIncrementDemand():
+@app.route('/mobile/update-demand/', methods=['POST'])
+def mobAdjustDemand():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
+    demand = request.args.get('demand')
     response = {}
     try:
-        firestore.adjustItem(place_id=place_id, item_name=item, delta_demand=1, delta_supply=0)
+        firestore.adjustItemDemand(place_id=place_id, item_name=item, demand=demand)
         response['status']='Success'
     except:
         response['status']='Error 404'
@@ -38,13 +39,14 @@ def dashGetProducts():
     return jsonify(response)
     
     
-@app.route('/dashboard/increment-supply/', methods=['POST'])
-def dashIncrementSupply():
+@app.route('/dashboard/update-supply/', methods=['POST'])
+def dashAdjustSupply():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
+    supply = request.args.get('supply')
     response = {}
     try:
-        firestore.adjustItem(place_id=place_id, item_name=item, delta_demand=0, delta_supply=1)
+        firestore.adjustItemSupply(place_id=place_id, item_name=item, supply=supply)
         response['status']='Success'
     except:
         response['status']='Error 404'
