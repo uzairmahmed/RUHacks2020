@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text, Button } from 'react-native';
 import { Ionicons as Icon } from '@expo/vector-icons';
 
 
@@ -8,10 +8,18 @@ export default class StoreItem extends React.Component {
         super(props);
     }
     render() {
+        const { navigation } = this.props;
         var name = this.props.name
         var address = this.props.address
+        var products = this.props.items
         return (
-            <TouchableOpacity style={styles.storeItem}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Store', {
+                    storeName: name,
+                    storeAddress: address,
+                    storeProducts: products
+                })}
+                style={styles.storeItem}>
                 <Image
                     style={styles.tinyLogo}
                     source={require('../assets/user.jpg')} />
@@ -23,7 +31,7 @@ export default class StoreItem extends React.Component {
                 <Text style={styles.title}>
                     {address}
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity >
         )
     }
 }
