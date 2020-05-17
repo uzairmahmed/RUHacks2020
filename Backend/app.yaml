@@ -1,6 +1,6 @@
 runtime: python
 env: flex
-service: default
+service: backend
 entrypoint: gunicorn -b :$PORT api:app
 
 runtime_config:

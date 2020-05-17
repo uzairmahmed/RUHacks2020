@@ -56,7 +56,7 @@ def dashAdjustSupply():
     except:
         response['status']='Error 404'
     return jsonify(response)
-
+ 
 @app.route('/dashboard/create-store/', methods=['POST'])
 def dashAddStore():
     place_id = request.args.get('place_id')
