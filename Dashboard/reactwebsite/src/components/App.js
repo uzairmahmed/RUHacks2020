@@ -11,7 +11,11 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			items: [],
-			currentStore: 'ChIJqTmMY_9uK4gR_qBXJtlL8KA'
+			currentStore: 'ChIJrV9P_21vK4gRRbNcyA7krrs',
+			name: 'Food Basics',
+			desc: '500 Laurier Avenue, Milton',
+			latitude:43.5085413,
+			lon:-79.8613742
 			
 		};
 	}
@@ -59,11 +63,10 @@ export default class App extends Component {
 						{/* <!-- End: Intro --> */}
 						{/* <!-- Start: Features --> */}
 						<div class="row justify-content-center features">
-							<StoreName
-								color={color}
-								// name="Costco.js" desc="No Description"
-							/>
-							<GoogleMaps color={color} />
+						<StoreName
+                                color={color}
+                                name={this.state.name} desc={this.state.desc}
+                            />
 							<Products
 								refresh={this.refresh}
 								storeID={this.state.currentStore}
