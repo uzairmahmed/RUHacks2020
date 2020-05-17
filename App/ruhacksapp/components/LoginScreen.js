@@ -30,22 +30,23 @@ export default class LoginPage extends React.Component {
                 </Text>
 
                 <TextInput
-                    placeholder="Username."
+                    placeholder="Username"
                     style={styles.textInput}
                     onChangeText={text => this.setState({ username: text })}
                     value={this.state.username}
                 />
 
                 <TextInput
-                    placeholder="Password."
+                    placeholder="Password"
                     style={styles.textInput}
                     onChangeText={text => this.setState({ password: text })}
                     value={this.state.password}
                 />
 
                 <Button
-                    title="Login."
+                    title="Login"
                     onPress={() => navigation.navigate('Home')}
+                    style={styles.button}
                 />
             </View>
         )
@@ -56,18 +57,34 @@ export default class LoginPage extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#dae1e7',
         alignItems: 'center',
         justifyContent: 'center',
     },
     title: {
-        fontSize: 25
+        fontSize: 25,
+        padding: 10,
+        color: '#27496d',
     },
     profileIcon: {
-        width: 50,
-        height: 50,
+        backgroundColor: '#dae1e7',
+        width: 150,
+        height: 150,
+        margin: 10,
     },
     textInput: {
-        borderWidth: 1
-    }
+        borderColor: '#27496d',
+        borderWidth: 0.5,
+        height: 30,
+        margin: 5,
+        padding: 5,
+        width: 150,
+
+    },
+    button: {
+        backgroundColor: '#00909e',
+        borderRadius: 0,
+        height: 25,
+        width: 90,
+    },
 });
