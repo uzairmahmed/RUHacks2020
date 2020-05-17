@@ -83,8 +83,8 @@ export default class Dashboard extends React.Component {
 
     parseData(data) {
         var i;
-        markerArray = []
-        valuesArray = []
+        var markerArray = []
+        var valuesArray = []
         for (i = 0; i < data.length; i++) {
             markerArray.push({
                 key: data[i].place_id,
@@ -121,10 +121,12 @@ export default class Dashboard extends React.Component {
         else {
             return (
                 <View style={styles.container}>
-                    <View style={styles.mapContainer}>
+                    <View style={styles.searchContainer}>
                         <Searchbar
                             search={this.handleSearch}
                         />
+                    </View>
+                    <View style={styles.mapContainer}>
                         <MapView
                             style={styles.mapStyle}
                             initialRegion={this.state.mapRegion}
@@ -147,7 +149,7 @@ export default class Dashboard extends React.Component {
                     </View>
                     <View style={styles.storeContainer}>
                         <FlatList
-                            style={styles.storeList}
+                            contentContainerStyle={styles.storeList}
                             data={this.state.stores}
                             renderItem={(itemData) =>
                                 <StoreItem
@@ -158,7 +160,7 @@ export default class Dashboard extends React.Component {
                                 />}
                         />
                     </View>
-                </View>
+                </View >
             )
         }
     }
@@ -168,27 +170,36 @@ export default class Dashboard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50,
+        flexDirection: "column",
         backgroundColor: "#dae1e7",
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     mapContainer: {
-        backgroundColor: "#27496d",
         width: "100%",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        zIndex: -1,
+        position: "absolute"
+    },
+    searchContainer: {
+        flex: 1,
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "flex-start",
     },
     storeContainer: {
-        backgroundColor: "#27496d",
-        width: "100%",
-        alignItems: "center",
+        flex: 1,
+        alignSelf: "stretch",
     },
     storeList: {
-        width: '100%'
+        flex:1,
+        padding:10,
+        justifyContent: "flex-end",
+        alignItems: "center",
     },
     mapStyle: {
-        width: (Dimensions.get('window').width) * 0.95,
-        height: 250,
+        width: (Dimensions.get('window').width + 100),
+        height: (Dimensions.get('window').height + 100),
     },
 });

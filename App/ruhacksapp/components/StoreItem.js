@@ -20,9 +20,12 @@ export default class StoreItem extends React.Component {
                     storeProducts: products
                 })}
                 style={styles.storeItem}>
-                <Image
-                    style={styles.tinyLogo}
-                    source={require('../assets/user.jpg')} />
+
+                <Icon
+                    name="ios-card"
+                    size={35}
+                    style={styles.icon}
+                />
 
                 <Text style={styles.title}>
                     {name}
@@ -39,17 +42,19 @@ export default class StoreItem extends React.Component {
 
 const styles = StyleSheet.create({
     storeItem: {
-        backgroundColor: "#dae1e7",
-        width: "92%",
+        backgroundColor: "#FFF",
+        width: "90%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly",
-        padding: 4,
-        margin: 5,
-        borderRadius: 8,
+        justifyContent: "space-between",
+        padding: 20,
+        marginHorizontal: 20,
+        marginVertical: 5,
+        borderRadius: 20,
+
     },
     tinyLogo: {
-        width: 50,
-        height: 50,
+        borderRadius: 100,
+        margin: 50,
     },
 });
