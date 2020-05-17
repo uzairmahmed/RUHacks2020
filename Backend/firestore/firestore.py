@@ -25,7 +25,7 @@ def addItem(place_id, item_name, supply):
 
 # UPDATE
 
-def adjustItem(place_id, item_name, delta_supply, delta_demand):
+def adjustItem(place_id, item_name, delta_supply=0, delta_demand=0):
     doc_ref = db.collection(u'stores').document(place_id).collection(u'items').document(item_name)
     doc = doc_ref.get()
     supply = doc.to_dict()['supply'] + delta_supply
@@ -49,6 +49,25 @@ def readItem(place_id, item_name):
     doc = doc_ref.get()
     pprint(doc.to_dict())
     return doc.to_dict()
+
+# Fix to all
+def readAllItems(place_id):
+    output = []
+    try:
+        docs = db.collection(u'stores').document(place_id).collection(u'items').stream()
+        for doc in docs:
+            print(doc.id)
+            print(doc.to_dict())
+            output.append(
+            {
+                'name':doc.id,
+                'supply':doc.to_dict()['supply'],
+                'demand':doc.to_dict()['demand']
+            }
+        )
+    except:
+        print("Error 404")
+    return output
 
 # DELETE
 

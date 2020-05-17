@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>stonks-webpage</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <!-- Start: Features Boxed -->
+    <div class="features-boxed">
+        <div class="container">
+            <!-- Start: Navigation with Search -->
+            <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+                <div class="container"><a class="navbar-brand" href="#">Stonks</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse"
+                        id="navcol-1">
+                        <ul class="nav navbar-nav"></ul>
+                        <form class="form-inline mr-auto" target="_self">
+                            <div class="form-group"><label for="search-field"></label></div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <!-- End: Navigation with Search -->
+            <!-- Start: Intro -->
+            <div class="intro">
+                <p class="text-center"></p>
+            </div>
+            <!-- End: Intro -->
+            <!-- Start: Features -->
+            <div class="row justify-content-center features">
+                <div class="col-sm-6 col-md-5 col-lg-4 col-xl-8 item">
+                    <div class="box"><i class="fas fa-store-alt icon" style="color: #ff1654;margin-bottom: 15px;"></i>
+                        <h1 id="store-name" class="name">Store Name</h1>
+                        <p id="store-desc" class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p><a class="learn-more" href="#"></a></div>
+                </div>
+                <div class="col"><iframe allowfullscreen="" frameborder="0" src="https://cdn.bootstrapstudio.io/placeholders/map.html" id="map" width="100%" height="400"></iframe></div>
+                <div class="col-sm-6 col-md-5 col-lg-4 col-xl-6 item">
+                    <div class="box"><i class="fa fa-shopping-cart icon" style="color: #ff1654;margin-bottom: 15px;"></i>
+                        <h3 class="name">Products in Stock</h3><input type="search" id="search-bar-2" style="padding: 1px;margin-bottom: 16px;margin-right: 12px;margin-top: 7px;"><button class="btn btn-primary border rounded-circle" id="search-button-2" type="submit"
+                            style="background-color: #ff1654;"><i class="fa fa-search"></i></button>
+                        <div class="table-responsive">
+                            <table class="table" id="table-1">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 26px;"></th>
+                                        <th style="width: 188px;">Item Name</th>
+                                        <th># in Stock</th>
+                                        <th style="width: 60px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><i class="fas fa-toilet-paper"></i></td>
+                                        <td style="width: 129px;">Toilet Paper</td>
+                                        <td>4</td>
+                                        <td><input type="number" style="width: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-shopping-basket"></i></td>
+                                        <td>Vanilla Extract</td>
+                                        <td>4</td>
+                                        <td><input type="number" style="width: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-egg"></i></td>
+                                        <td>Eggs</td>
+                                        <td>2</td>
+                                        <td><input type="number" style="width: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-bread-slice"></i></td>
+                                        <td>Bread</td>
+                                        <td>3</td>
+                                        <td><input type="number" style="width: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-heartbeat"></i></td>
+                                        <td>A will to live</td>
+                                        <td>2</td>
+                                        <td><input type="number" style="width: 50px;"></td>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="description"></p><button class="btn btn-primary" id="edit-supply" type="button" style="background-color: #ff1654;">Edit Supply</button></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 col-xl-6 item">
+                    <div class="box"><i class="fa fa-question-circle icon" style="color: #ff1654;margin-bottom: 15px;"></i>
+                        <h3 class="name">Items Requests at this Location</h3><input type="search" id="search-bar-3" style="margin-top: 7px;margin-right: 12px;margin-bottom: 16px;padding: 1px;"><button class="btn btn-primary border rounded-circle" id="search-button-3"
+                            type="button" style="background-color: #ff1654;"><i class="fa fa-search"></i></button>
+                        <div class="table-responsive">
+                            <table class="table" id="table-2">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 26px;"></th>
+                                        <th>Item Name</th>
+                                        <th># of Request</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><i class="fas fa-toilet-paper"></i></td>
+                                        <td>Toilet Paper</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-egg"></i></td>
+                                        <td>Eggs</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-bread-slice"></i></td>
+                                        <td>Bread</td>
+                                        <td>3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- End: Features -->
+        </div>
+    </div>
+    <!-- End: Features Boxed -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
