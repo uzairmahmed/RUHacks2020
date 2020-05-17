@@ -19,7 +19,7 @@ def getNearbyStores(latitude, longitude, category, radius):
     return places_result
 
 # Defaults radius to 1000 meters
-def mobileGetNearby(latitude, longitude, query=None,category='store', radius=1000):
+def mobileGetNearby(latitude, longitude, query=None,category='store', radius=10000):
     nearbyStores = getNearbyStores(latitude, longitude, category, radius)
     output = {'stores':[]}
     for store in nearbyStores:

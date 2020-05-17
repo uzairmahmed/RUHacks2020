@@ -24,11 +24,20 @@ def addItem(place_id, item_name, supply):
 
 # UPDATE
 
-def adjustItem(place_id, item_name, delta_supply=0, delta_demand=0):
+def adjustItemSupply(place_id, item_name, supply):
     doc_ref = db.collection(u'stores').document(place_id).collection(u'items').document(item_name)
     doc = doc_ref.get()
-    supply = doc.to_dict()['supply'] + delta_supply
-    demand = doc.to_dict()['demand'] + delta_demand
+    demand = doc.to_dict()['demand']
+    
+    doc_ref.update({
+    u'supply': supply,
+    u'demand': demand
+    })
+
+def adjustItemDemand(place_id, item_name, demand):
+    doc_ref = db.collection(u'stores').document(place_id).collection(u'items').document(item_name)
+    doc = doc_ref.get()
+    supply = doc.to_dict()['supply']
     
     doc_ref.update({
     u'supply': supply,

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator, Button, Dimensions, Image, T
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import axios from 'axios';
 
 import Searchbar from "./SearchBar"
 import StoreItem from "./StoreItem"
@@ -12,10 +13,12 @@ export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mapRegion:null,
+            mapRegion: null,
             loading: false,
+            data: [],
             latitude: 0,
             longitude: 0,
+            searchParameter:"EMPTY",
             markers: [
                 {
                     latitude: 43.518444,
@@ -25,9 +28,11 @@ export default class Dashboard extends React.Component {
             ],
         }
     }
-    static navigationOptions = {
-        header: null,
-    };
+
+    async componentDidMount() {
+        console.log("Getting location")
+        await this.getCurrentLocation();
+    }
 
     async getCurrentLocation() {
         this.state.loading = true
@@ -45,20 +50,45 @@ export default class Dashboard extends React.Component {
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 },
-                loading:false,
+                loading: false,
             });
 
         }
     }
 
+    instance = axios.create({
+        baseURL: 'http://192.168.0.23:5000/',
+    });
+
     handleMapRegionChange = mapRegion => {
         this.setState({ mapRegion });
     };
 
-    async componentDidMount() {
-        console.log("Getting location")
-        await this.getCurrentLocation();
+    handleSearch = (val) => {
+        if (val == "") {
+            this.state.searchParameter = "EMPTY"
+        } else {
+            this.state.searchParameter = val
+        }
+
+        this.fetchData()
     }
+
+
+    async fetchData() {
+        const payload = {
+            longitude: this.state.mapRegion.longitude,
+            latitude: this.state.mapRegion.latitude,
+            query: this.state.searchParameter
+        }
+        await this.instance.post('/mobile/get-nearby/', payload)
+          .then((response) => {
+            console.log(response.request.response);
+          }, (error) => {
+            console.log(error);
+          });
+    }
+
 
 
     render() {
@@ -76,7 +106,9 @@ export default class Dashboard extends React.Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.mapContainer}>
-                        <Searchbar />
+                        <Searchbar
+                            search={this.handleSearch}
+                        />
                         <MapView
                             style={styles.mapStyle}
                             region={this.state.mapRegion}
