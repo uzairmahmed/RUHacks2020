@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/RUHacks2020/precache-manifest.5a12c3aa8ddcc513cf266c17e34333bd.js"
+  "/RUHacks2020/precache-manifest.c4af8b4143b678ab1249025cab58533b.js"
 );
 
 self.addEventListener('message', (event) => {
