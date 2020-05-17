@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button, Image, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, TextInput, TouchableOpacity } from 'react-native';
 
 
 export default class LoginPage extends React.Component {
@@ -13,17 +13,18 @@ export default class LoginPage extends React.Component {
 
     render() {
         const { navigation } = this.props;
+        const onPress = () => navigation.navigate('Home');
         return (
             <View style={styles.container}>
 
                 <View style={styles.v1}>
                     <Image
                         style={styles.profileIcon}
-                        source={require('../assets/user.jpg')}
+                        source={require('../assets/mylogo.png')}
                     />
 
                     <Text style={styles.title}>
-                        Welcome Back!
+                        Inventory Investigator
                 </Text>
 
                 </View>
@@ -36,18 +37,19 @@ export default class LoginPage extends React.Component {
                     />
 
                     <TextInput
+                        secureTextEntry={true}
+                        textContentType="password"
                         placeholder="Password"
                         style={styles.textInput}
                         onChangeText={text => this.setState({ password: text })}
                         value={this.state.password}
                     />
-
-                    <Button
-                        title="Login"
-                        onPress={() => navigation.navigate('Home')}
+                    <TouchableOpacity
                         style={styles.button}
-                    />
-
+                        onPress={onPress}
+                    >
+                        <Text>Login.</Text>
+                    </TouchableOpacity>
                 </View>
 
 
@@ -84,12 +86,13 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         margin: 10,
-        borderRadius: 100
+        borderRadius: 20
 
     },
     textInput: {
         borderColor: '#27496d',
-        borderWidth: 0.5,
+        borderBottomWidth: 0.5,
+        fontSize: 20,
         height: 40,
         margin: 10,
         padding: 5,
@@ -97,9 +100,11 @@ const styles = StyleSheet.create({
 
     },
     button: {
-        backgroundColor: '#00909e',
-        borderRadius: 0,
-        height: 25,
-        width: 90,
+
+        alignItems: "center",
+        backgroundColor: "#FFF",
+        marginVertical:50,
+        padding: 20,
+        borderRadius:20
     },
 });

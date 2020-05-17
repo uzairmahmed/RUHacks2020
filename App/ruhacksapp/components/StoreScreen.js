@@ -8,7 +8,7 @@ export default class StorePage extends React.Component {
         super(props);
         this.state = {
             storeData: props.route.params,
-            productsArrayParsed:[]
+            productsArrayParsed: []
         }
     }
 
@@ -21,7 +21,7 @@ export default class StorePage extends React.Component {
         var i
         var products = []
         console.log(items)
-        for (i = 0; i < items.length; i++){
+        for (i = 0; i < items.length; i++) {
             products.push({
                 key: Math.random().toString(),
                 value: {
@@ -55,7 +55,7 @@ export default class StorePage extends React.Component {
                 </View>
                 <View style={styles.storeContainer}>
                     <FlatList
-                        style={styles.storeList}
+                        contentContainerStyle={styles.storeList}
                         data={this.state.productsArrayParsed}
                         renderItem={(itemData) =>
                             <Item
@@ -63,7 +63,7 @@ export default class StorePage extends React.Component {
                                 supply={itemData.item.value.supply}
                                 demand={itemData.item.value.demand}
                             />}
-                        />
+                    />
                 </View>
             </View>
         )
@@ -80,27 +80,30 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     title: {
-        textAlign:"center",
+        textAlign: "center",
         fontSize: 25,
         padding: 10,
         color: '#27496d',
     },
     profilecontainer: {
         padding: 50,
-        flexDirection:"column",
+        flexDirection: "column",
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
     },
     profileIcon: {
-        alignSelf:"center",
-        backgroundColor: '#dae1e7',
+        alignSelf: "center",
         width: 150,
         height: 150,
         margin: 10,
-        borderRadius:100
+        borderRadius: 100
+    },
+    storeList: {
+        flex: 1,
+        padding: 10,
+        alignItems: "center",
     },
     storeContainer: {
-        backgroundColor: "#27496d",
         width: "100%",
         alignItems: "center",
     },

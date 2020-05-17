@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
 import { Ionicons as Icon } from '@expo/vector-icons';
 
 
@@ -13,6 +13,12 @@ export default class StoreItem extends React.Component {
         var demand = this.props.demand
         return (
             <View style={styles.storeItem}>
+                <Icon
+                    name="ios-basket"
+                    size={25}
+                    style={styles.icon}
+                />
+
                 <Text style={styles.title}>
                     {name}
                 </Text>
@@ -25,10 +31,13 @@ export default class StoreItem extends React.Component {
                     Demand {demand}
                 </Text>
 
-
-                <Button
-                    title="+"
-                />
+                <TouchableOpacity>
+                    <Icon
+                        name="ios-add-circle-outline"
+                        size={25}
+                        style={styles.icon}
+                    />
+                </TouchableOpacity>
             </View >
         )
     }
@@ -38,17 +47,16 @@ export default class StoreItem extends React.Component {
 const styles = StyleSheet.create({
     storeItem: {
         backgroundColor: "#fff",
-        width: "92%",
+        width: "90%",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-evenly",
-        padding: 4,
+        padding: 10,
         margin: 5,
         borderRadius: 8,
     },
     button: {
-
-        borderRadius:100
+        borderRadius: 100
     },
-    
+
 });

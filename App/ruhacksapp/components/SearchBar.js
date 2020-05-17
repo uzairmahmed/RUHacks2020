@@ -44,14 +44,23 @@ const styles = StyleSheet.create({
         height:50,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-around",
         borderRadius: 15,
         opacity: 1,
+        marginTop: 50,
+        position:"relative",
+
+    },
+    textInput: {
+        margin: 10,
+        width: 150,
+        alignSelf:"center"
     },
     icon: {
         width: 25,
         height: 25,
-        alignItems: "center",
-        justifyContent: "space-evenly",
+        marginHorizontal:25,
+        alignSelf: "center",
+        justifyContent: "space-between",
     },
 });
