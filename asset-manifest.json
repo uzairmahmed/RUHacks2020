@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/RUHacks2020/static/css/main.5d3a25d5.chunk.css",
+    "main.js": "/RUHacks2020/static/js/main.7b2f3cda.chunk.js",
+    "main.js.map": "/RUHacks2020/static/js/main.7b2f3cda.chunk.js.map",
+    "runtime-main.js": "/RUHacks2020/static/js/runtime-main.2c72f490.js",
+    "runtime-main.js.map": "/RUHacks2020/static/js/runtime-main.2c72f490.js.map",
+    "static/js/2.5ca36819.chunk.js": "/RUHacks2020/static/js/2.5ca36819.chunk.js",
+    "static/js/2.5ca36819.chunk.js.map": "/RUHacks2020/static/js/2.5ca36819.chunk.js.map",
+    "index.html": "/RUHacks2020/index.html",
+    "precache-manifest.5a12c3aa8ddcc513cf266c17e34333bd.js": "/RUHacks2020/precache-manifest.5a12c3aa8ddcc513cf266c17e34333bd.js",
+    "service-worker.js": "/RUHacks2020/service-worker.js",
+    "static/css/main.5d3a25d5.chunk.css.map": "/RUHacks2020/static/css/main.5d3a25d5.chunk.css.map",
+    "static/js/2.5ca36819.chunk.js.LICENSE.txt": "/RUHacks2020/static/js/2.5ca36819.chunk.js.LICENSE.txt",
+    "static/media/fontawesome-all.min.css": "/RUHacks2020/static/media/fa-solid-900.f6121be5.woff2",
+    "static/media/font-awesome.min.css": "/RUHacks2020/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2c72f490.js",
+    "static/js/2.5ca36819.chunk.js",
+    "static/css/main.5d3a25d5.chunk.css",
+    "static/js/main.7b2f3cda.chunk.js"
+  ]
+}
