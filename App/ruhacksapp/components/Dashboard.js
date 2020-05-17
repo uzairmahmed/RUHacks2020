@@ -47,7 +47,7 @@ export default class Dashboard extends React.Component {
                 },
                 loading:false,
             });
-            
+
         }
     }
 
@@ -86,6 +86,12 @@ export default class Dashboard extends React.Component {
                     </View>
                     <View style={styles.storeContainer}>
                         <StoreItem />
+                        <StoreItem />
+                        <StoreItem />
+                        <StoreItem />
+                        <StoreItem />
+                        <StoreItem />
+                        <StoreItem />
                     </View>
                 </View>
             )
@@ -97,18 +103,18 @@ export default class Dashboard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: "#dae1e7",
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     mapContainer: {
-        backgroundColor: "#eee",
+        backgroundColor: "#27496d",
         width: "100%",
         alignItems: "center",
         justifyContent: "space-evenly"
     },
     storeContainer: {
-        backgroundColor: "#eee",
+        backgroundColor: "#27496d",
         width: "100%",
         alignItems: "center",
     },

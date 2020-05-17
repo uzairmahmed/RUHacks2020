@@ -26,11 +26,14 @@ export default class StoreItem extends React.Component {
 
 const styles = StyleSheet.create({
     storeItem: {
-        backgroundColor: "#eee",
-        width: "100%",
+        backgroundColor: "#dae1e7",
+        width: "92%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        padding: 4,
+        margin: 5,
+        borderRadius: 8,
     },
     tinyLogo: {
         width: 50,
