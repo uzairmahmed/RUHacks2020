@@ -13,7 +13,10 @@ def mobGetNearby():
     longitude = request.args.get('longitude')
     try:
         query = request.args.get('query')
-        response = mobileGetNearby(latitude=latitude, longitude=longitude, query=query)
+        if query == "EMPTY":
+            response = mobileGetNearby(latitude=latitude, longitude=longitude)
+        else:
+            response = mobileGetNearby(latitude=latitude, longitude=longitude, query=query)
     except:
         response = mobileGetNearby(latitude=latitude, longitude=longitude)
     return jsonify(response)
