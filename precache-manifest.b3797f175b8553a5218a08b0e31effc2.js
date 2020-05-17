@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "742175b3dadb39fd2451fee1a71116d0",
+    "revision": "e0f09c7e0022054f8f6235cba339ddb4",
     "url": "/RUHacks2020/index.html"
   },
   {
-    "revision": "19017455633ec9589db4",
+    "revision": "0909d613de7bd3117c3a",
     "url": "/RUHacks2020/static/css/main.5d3a25d5.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/RUHacks2020/static/js/2.5ca36819.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "19017455633ec9589db4",
-    "url": "/RUHacks2020/static/js/main.76dbae48.chunk.js"
+    "revision": "0909d613de7bd3117c3a",
+    "url": "/RUHacks2020/static/js/main.595911c5.chunk.js"
   },
   {
     "revision": "5579b42d712011ccf094",
