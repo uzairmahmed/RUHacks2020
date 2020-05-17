@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button, Dimensions, Image, TouchableOpacity, TextInput } from 'react-native';
-import { Ionicons as Icon } from '@expo/vector-icons';
+import { View, Text, StyleSheet, ActivityIndicator, Button, Dimensions, Image, TouchableOpacity, TextInput, addons } from 'react-native';
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import Geolocation from "react-native-geolocation-service";
 
 import Searchbar from "./SearchBar"
 import StoreItem from "./StoreItem"
@@ -12,9 +12,10 @@ export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            latitude: 43.518444,
-            longitude: -79.824612,
-            coordinates: [],
+            mapRegion:null,
+            loading: false,
+            latitude: 0,
+            longitude: 0,
             markers: [
                 {
                     latitude: 43.518444,
@@ -28,62 +29,67 @@ export default class Dashboard extends React.Component {
         header: null,
     };
 
+    async getCurrentLocation() {
+        this.state.loading = true
+        status = await (await Location.requestPermissionsAsync()).status;
+        console.log("Location " + status)
+        if (status !== 'granted') {
+            alert('Permission to access location was denied');
+        }
+        else {
+            const location = await Location.getCurrentPositionAsync({});
+            this.setState({
+                mapRegion: {
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                },
+                loading:false,
+            });
+            
+        }
+    }
 
-    componentDidMount() {
-        Geolocation.getCurrentPosition(
-            position => {
-                this.setState({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    coordinates: this.state.coordinates.concat({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    })
-                });
-            },
-            error => {
-                Alert.alert(error.message.toString());
-            },
-            {
-                showLocationDialog: true,
-                enableHighAccuracy: true,
-                timeout: 20000,
-                maximumAge: 0
-            }
-        );
+    handleMapRegionChange = mapRegion => {
+        this.setState({ mapRegion });
+    };
+
+    async componentDidMount() {
+        console.log("Getting location")
+        await this.getCurrentLocation();
     }
 
 
     render() {
         const { navigation } = this.props;
-        return (
-            <View style={styles.container}>
-                <View style={styles.mapContainer}>
-                    <Searchbar />
-                    <MapView
-                        style={styles.mapStyle}
-                        region={{
-                            latitude: this.state.latitude,
-                            longitude: this.state.longitude,
-                            latitudeDelta: 0.0922,
-                            longitudeDelta: 0.0421,
-                        }}
-                    >
-                        <MapView.Marker
-                            coordinate={{
-                                latitude: 43.518444,
-                                longitude: -79.824612
-                            }}
-                            title={"title"}
-                            description={"description"}
-                        />
-                    </MapView>
+        const loading = this.state.loading;
+
+        if (this.state.loading) {
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator style={{ paddingTop: Dimensions.get('window').height / 3 }} size="large" color="#000" />
                 </View>
-                <View style={styles.storeContainer}>
-                    <StoreItem />
+            );
+        }
+        else {
+            return (
+                <View style={styles.container}>
+                    <View style={styles.mapContainer}>
+                        <Searchbar />
+                        <MapView
+                            style={styles.mapStyle}
+                            region={this.state.mapRegion}
+                            onRegionChange={this.handleMapRegionChange}
+                        >
+                        </MapView>
+                    </View>
+                    <View style={styles.storeContainer}>
+                        <StoreItem />
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        }
     }
 }
 
