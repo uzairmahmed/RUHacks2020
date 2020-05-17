@@ -87,17 +87,21 @@ export default class Dashboard extends React.Component {
         valuesArray = []
         for (i = 0; i < data.length; i++) {
             markerArray.push({
-                longitude: data[i].longitude,
-                latitude: data[i].latitude,
-                title: data[i].name,
-                description: data[i].place_id
+                key: data[i].place_id,
+                value: {
+                    longitude: data[i].longitude,
+                    latitude: data[i].latitude,
+                    title: data[i].name,
+                }
             });
             valuesArray.push({
                 key: data[i].place_id,
                 value: {
                     title: data[i].name,
-                    address: data[i].vicinity
-                }});
+                    address: data[i].vicinity,
+                    products: data[i].items
+                }
+            });
         }
         this.setState({ markers: markerArray });
         this.setState({ stores: valuesArray });
@@ -131,11 +135,11 @@ export default class Dashboard extends React.Component {
                                 <MapView.Marker
                                     key={index}
                                     coordinate={{
-                                        latitude: marker.latitude,
-                                        longitude: marker.longitude
+                                        latitude: marker.value.latitude,
+                                        longitude: marker.value.longitude
                                     }}
-                                    title={marker.title}
-                                    description={marker.description}
+                                    title={marker.value.title}
+                                    description={marker.key}
                                 />
                             ))
                             }
@@ -147,8 +151,10 @@ export default class Dashboard extends React.Component {
                             data={this.state.stores}
                             renderItem={(itemData) =>
                                 <StoreItem
+                                    navigation={navigation}
                                     name={itemData.item.value.title}
                                     address={itemData.item.value.address}
+                                    items={itemData.item.value.products}
                                 />}
                         />
                     </View>
@@ -162,6 +168,7 @@ export default class Dashboard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 50,
         backgroundColor: "#dae1e7",
         alignItems: 'center',
         justifyContent: 'flex-start',
