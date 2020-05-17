@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-    <!-- Start: Features Boxed -->
     <div class="features-boxed">
         <div class="container">
-            <!-- Start: Navigation with Search -->
             <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
                 <div class="container"><a class="navbar-brand" href="#">Stonks</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse"
@@ -28,13 +28,9 @@
                     </div>
                 </div>
             </nav>
-            <!-- End: Navigation with Search -->
-            <!-- Start: Intro -->
             <div class="intro">
                 <p class="text-center"></p>
             </div>
-            <!-- End: Intro -->
-            <!-- Start: Features -->
             <div class="row justify-content-center features">
                 <div class="col-sm-6 col-md-5 col-lg-4 col-xl-8 item">
                     <div class="box"><i class="fas fa-store-alt icon" style="color: #ff1654;margin-bottom: 15px;"></i>
@@ -50,39 +46,33 @@
                             <table class="table" id="table-1">
                                 <thead>
                                     <tr>
-                                        <th style="width: 26px;"></th>
-                                        <th style="width: 188px;">Item Name</th>
-                                        <th># in Stock</th>
+                                        <th style="width: 72px;">Item Name</th>
+                                        <th style="width: 24px;"># in Stock</th>
                                         <th style="width: 60px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><i class=""></i></td>
                                         <td style="width: 129px;">Toilet Paper</td>
                                         <td>4</td>
-                                        <td><input type="number" style="width: 50px;"></td>
+                                        <td><input type="number" style="width: 38px;"><button class="btn btn-primary" id="edit-supply" type="button" style="margin-left: 8px;background-color: #ff1654;">Edit Supply</button></td>
                                     </tr>
                                     <tr>
-                                        <td><i class=""></i></td>
                                         <td>Vanilla Extract</td>
                                         <td>4</td>
                                         <td><input type="number" style="width: 50px;"></td>
                                     </tr>
                                     <tr>
-                                        <td><i class=""></i></td>
                                         <td>Eggs</td>
                                         <td>2</td>
                                         <td><input type="number" style="width: 50px;"></td>
                                     </tr>
                                     <tr>
-                                        <td><i class=""></i></td>
                                         <td>Bread</td>
                                         <td>3</td>
                                         <td><input type="number" style="width: 50px;"></td>
                                     </tr>
                                     <tr>
-                                        <td><i class=""></i></td>
                                         <td>A will to live</td>
                                         <td>2</td>
                                         <td><input type="number" style="width: 50px;"></td>
@@ -92,7 +82,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p class="description"></p><button class="btn btn-primary" id="edit-supply" type="button" style="background-color: #ff1654;">Edit Supply</button></div>
+                        <p class="description"></p>
+                    </div>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 col-xl-6 item">
                     <div class="box"><i class="fa fa-question-circle icon" style="color: #ff1654;margin-bottom: 15px;"></i>
@@ -102,24 +93,20 @@
                             <table class="table" id="table-2">
                                 <thead>
                                     <tr>
-                                        <th style="width: 26px;"></th>
                                         <th>Item Name</th>
                                         <th># of Request</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><i class="fas fa-toilet-paper"></i></td>
                                         <td>Toilet Paper</td>
                                         <td>2</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-egg"></i></td>
                                         <td>Eggs</td>
                                         <td>4</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-bread-slice"></i></td>
                                         <td>Bread</td>
                                         <td>3</td>
                                     </tr>
@@ -130,10 +117,8 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <!-- End: Features -->
         </div>
     </div>
-    <!-- End: Features Boxed -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
