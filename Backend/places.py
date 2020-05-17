@@ -1,5 +1,4 @@
 import googlemaps
-import pprint
 import time
 from keys.gmaps import key
 from firestore.firestore import readAllItems 
@@ -17,7 +16,6 @@ def getNearbyStores(latitude, longitude, category, radius):
     # Appends coordinates into a location string
     location = str(latitude) + ',' + str(longitude)
     places_result =  gmaps.places_nearby(location=location, radius = radius, open_now=False,type = category)['results']
-    pprint.pprint(places_result)
     return places_result
 
 # Defaults radius to 1000 meters
@@ -38,14 +36,3 @@ def mobileGetNearby(latitude, longitude, query=None,category='store', radius=100
             }
         )
     return output
-        
-
-
-
-# output = mobileGetNearby(latitude=43.892719,longitude= -79.263153,query='Dollarama',category='store',radius=100)
-# print('--------------------')
-# print('--------------------')
-# print('--------------------')
-# print('--------------------')
-# print('--------------------')
-# pprint.pprint(output)
