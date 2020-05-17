@@ -40,13 +40,17 @@ export default class Searchbar extends React.Component {
 const styles = StyleSheet.create({
     searchBar: {
         backgroundColor: "#eee",
-        width: "100%",
+        width: "97%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        borderRadius: 15,
+        opacity: 0.25,
     },
     icon: {
         width: 50,
         height: 50,
+        alignItems: "center",
+        justifyContent: "space-evenly",
     },
 });
