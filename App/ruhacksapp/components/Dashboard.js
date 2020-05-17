@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator, Button, Dimensions, Image, T
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import axios from 'axios';
 
 import Searchbar from "./SearchBar"
 import StoreItem from "./StoreItem"
@@ -55,6 +56,9 @@ export default class Dashboard extends React.Component {
         }
     }
 
+    instance = axios.create({
+        baseURL: 'http://192.168.0.23:5000/',
+    });
 
     handleMapRegionChange = mapRegion => {
         this.setState({ mapRegion });
@@ -62,11 +66,29 @@ export default class Dashboard extends React.Component {
 
     handleSearch = (val) => {
         if (val == "") {
-            console.log("EMPTY")
+            this.state.searchParameter = "EMPTY"
         } else {
-            console.log(val)
+            this.state.searchParameter = val
         }
+
+        this.fetchData()
     }
+
+
+    async fetchData() {
+        const payload = {
+            longitude: this.state.mapRegion.longitude,
+            latitude: this.state.mapRegion.latitude,
+            query: this.state.searchParameter
+        }
+        await this.instance.post('/mobile/get-nearby/', payload)
+          .then((response) => {
+            console.log(response.request.response);
+          }, (error) => {
+            console.log(error);
+          });
+    }
+
 
 
     render() {
@@ -95,6 +117,9 @@ export default class Dashboard extends React.Component {
                         </MapView>
                     </View>
                     <View style={styles.storeContainer}>
+                        <StoreItem />
+                        <StoreItem />
+                        <StoreItem />
                         <StoreItem />
                     </View>
                 </View>

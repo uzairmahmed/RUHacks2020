@@ -3,14 +3,16 @@ from flask_cors import CORS
 from places import mobileGetNearby
 from firestore import firestore
 app = Flask(__name__)
-app.config["DEBUG"] = False
+#app.config["DEBUG"] = False
 
 CORS(app)
 
 @app.route('/mobile/get-nearby/', methods=['POST'])
 def mobGetNearby():
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
+    reqJson = request.get_json()
+    latitude = reqJson['latitude']
+    longitude = reqJson['longitude']
+    query = reqJson['query']
     try:
         query = request.args.get('query')
         if query == "EMPTY":
