@@ -121,12 +121,9 @@ export default class Dashboard extends React.Component {
                         <StoreItem />
                         <StoreItem />
                         <StoreItem />
-<<<<<<< HEAD
                         <StoreItem />
                         <StoreItem />
                         <StoreItem />
-=======
->>>>>>> master
                     </View>
                 </View>
             )
