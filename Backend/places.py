@@ -25,14 +25,15 @@ def mobileGetNearby(latitude, longitude, query=None,category='store', radius=100
     for store in nearbyStores:
         if query is None or store['name'] == query:
             items = readAllItems(store['place_id'])
-            output['stores'].append(
-            {
-                'name':store['name'],
-                'place_id':store['place_id'],
-                'vicinity':store['vicinity'],
-                'items':items,
-                'longitude':store['geometry']['location']['lng'],
-                'latitude':store['geometry']['location']['lat']
-            }
+            if len(items) > 0:
+                output['stores'].append(
+                {
+                    'name':store['name'],
+                    'place_id':store['place_id'],
+                    'vicinity':store['vicinity'],
+                    'items':items,
+                    'longitude':store['geometry']['location']['lng'],
+                    'latitude':store['geometry']['location']['lat']
+                }
         )
     return output
