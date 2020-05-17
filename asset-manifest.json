@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/RUHacks2020/static/css/main.5d3a25d5.chunk.css",
-    "main.js": "/RUHacks2020/static/js/main.595911c5.chunk.js",
-    "main.js.map": "/RUHacks2020/static/js/main.595911c5.chunk.js.map",
+    "main.js": "/RUHacks2020/static/js/main.c4684175.chunk.js",
+    "main.js.map": "/RUHacks2020/static/js/main.c4684175.chunk.js.map",
     "runtime-main.js": "/RUHacks2020/static/js/runtime-main.2c72f490.js",
     "runtime-main.js.map": "/RUHacks2020/static/js/runtime-main.2c72f490.js.map",
     "static/js/2.5ca36819.chunk.js": "/RUHacks2020/static/js/2.5ca36819.chunk.js",
     "static/js/2.5ca36819.chunk.js.map": "/RUHacks2020/static/js/2.5ca36819.chunk.js.map",
     "index.html": "/RUHacks2020/index.html",
-    "precache-manifest.b3797f175b8553a5218a08b0e31effc2.js": "/RUHacks2020/precache-manifest.b3797f175b8553a5218a08b0e31effc2.js",
+    "precache-manifest.e469b9ec7b065a721a9ef4b705cfade1.js": "/RUHacks2020/precache-manifest.e469b9ec7b065a721a9ef4b705cfade1.js",
     "service-worker.js": "/RUHacks2020/service-worker.js",
     "static/css/main.5d3a25d5.chunk.css.map": "/RUHacks2020/static/css/main.5d3a25d5.chunk.css.map",
     "static/js/2.5ca36819.chunk.js.LICENSE.txt": "/RUHacks2020/static/js/2.5ca36819.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.2c72f490.js",
     "static/js/2.5ca36819.chunk.js",
     "static/css/main.5d3a25d5.chunk.css",
-    "static/js/main.595911c5.chunk.js"
+    "static/js/main.c4684175.chunk.js"
   ]
 }
