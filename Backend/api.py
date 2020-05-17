@@ -7,7 +7,7 @@ app.config["DEBUG"] = False
 
 CORS(app)
 
-@app.route('/mobile/get-nearby/', methods=['GET'])
+@app.route('/mobile/get-nearby/', methods=['POST'])
 def mobGetNearby():
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
@@ -32,7 +32,7 @@ def mobAdjustDemand():
     return jsonify(response)
     
 
-@app.route('/dashboard/get-products/', methods=['GET'])
+@app.route('/dashboard/get-products/', methods=['POST'])
 def dashGetProducts():
     place_id = request.args.get('place_id')
     response = firestore.readAllItems(place_id)
@@ -75,7 +75,7 @@ def dashAddItem():
         response['status']='Error: Create Item Failed'
     return jsonify(response)
 
-@app.route('/dashboard/delete-item/', methods=['DELETE'])
+@app.route('/dashboard/delete-item/', methods=['POST'])
 def dashDeleteItem():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
@@ -87,7 +87,7 @@ def dashDeleteItem():
         response['status']='Error 404'
     return jsonify(response)
 
-@app.route('/dashboard/delete-store/', methods=['DELETE'])
+@app.route('/dashboard/delete-store/', methods=['POST'])
 def dashDeleteStore():
     place_id = request.args.get('place_id')
     response = {}
