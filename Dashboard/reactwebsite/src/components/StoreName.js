@@ -7,10 +7,10 @@ export default class StoreName extends Component {
 				<div class="box">
 					<i class="fas fa-store-alt icon" style={{ color: this.props.color, marginBottom: 15 }} />
 					<h1 id="store-name" class="name">
-						{this.props.name || 'Costco'}
+						{this.props.name || 'Home Depot'}
 					</h1>
 					<p id="store-desc" class="description">
-						{this.props.desc || '65 Kirkham Dr, Markham, ON L3S 0A9'}
+						{this.props.desc || '1013 Maple Avenue, Milton'}
 					</p>
 					<a class="learn-more" href="#" />
 				</div>

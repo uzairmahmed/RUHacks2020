@@ -11,7 +11,8 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			items: [],
-			currentStore: 'ChIJq5MkJH9xhlQReBkLiP-mwY0'
+			currentStore: 'ChIJqTmMY_9uK4gR_qBXJtlL8KA'
+			
 		};
 	}
 	componentDidMount() {
@@ -34,7 +35,7 @@ export default class App extends Component {
 						<nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
 							<div class="container">
 								<a class="navbar-brand" href="#">
-									Stonks
+									Inventory Investigator
 								</a>
 								<button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
 									<span class="sr-only">Toggle navigation</span>
