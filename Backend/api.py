@@ -58,7 +58,7 @@ def dashAddStore():
         firestore.addStore(place_id)
         response['status']='Success'
     except:
-        response['status']='Error 404'
+        response['status']='Error: Create Store Failed'
     return jsonify(response)
 
 @app.route('/dashboard/create-item/', methods=['POST'])
@@ -70,7 +70,7 @@ def dashAddItem():
         firestore.addItem(place_id=place_id, item_name=item)
         response['status']='Success'
     except:
-        response['status']='Error 404'
+        response['status']='Error: Create Item Failed'
     return jsonify(response)
 
 @app.route('/dashboard/delete-item/', methods=['DELETE'])
