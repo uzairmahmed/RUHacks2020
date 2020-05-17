@@ -3,7 +3,7 @@ from flask_cors import CORS
 from places import mobileGetNearby
 from firestore import firestore
 app = Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 CORS(app)
 
@@ -96,4 +96,5 @@ def dashDeleteStore():
         response['status']='Error 404'
     return jsonify(response)
 
-app.run()
+if __name__ == '__main__':
+    app.run()
