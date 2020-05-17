@@ -12,10 +12,12 @@ export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mapRegion:null,
+            mapRegion: null,
             loading: false,
+            data: [],
             latitude: 0,
             longitude: 0,
+            searchParameter:"EMPTY",
             markers: [
                 {
                     latitude: 43.518444,
@@ -25,9 +27,11 @@ export default class Dashboard extends React.Component {
             ],
         }
     }
-    static navigationOptions = {
-        header: null,
-    };
+
+    async componentDidMount() {
+        console.log("Getting location")
+        await this.getCurrentLocation();
+    }
 
     async getCurrentLocation() {
         this.state.loading = true
@@ -45,19 +49,23 @@ export default class Dashboard extends React.Component {
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 },
-                loading:false,
+                loading: false,
             });
-            
+
         }
     }
+
 
     handleMapRegionChange = mapRegion => {
         this.setState({ mapRegion });
     };
 
-    async componentDidMount() {
-        console.log("Getting location")
-        await this.getCurrentLocation();
+    handleSearch = (val) => {
+        if (val == "") {
+            console.log("EMPTY")
+        } else {
+            console.log(val)
+        }
     }
 
 
@@ -76,7 +84,9 @@ export default class Dashboard extends React.Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.mapContainer}>
-                        <Searchbar />
+                        <Searchbar
+                            search={this.handleSearch}
+                        />
                         <MapView
                             style={styles.mapStyle}
                             region={this.state.mapRegion}

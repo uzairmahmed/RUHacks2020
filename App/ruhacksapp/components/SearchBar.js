@@ -4,14 +4,27 @@ import { Ionicons as Icon } from '@expo/vector-icons';
 
 
 export default class Searchbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchValue: ""
+        }
+    }
+
+    search() {
+        this.props.search(this.state.searchValue)
+    }
+
     render() {
         return (
             <View style={styles.searchBar}>
                 <TextInput
                     placeholder="Search."
+                    value={this.state.searchValue}
                     style={styles.textInput}
+                    onChangeText={text => this.setState({ searchValue: text })}
                 />
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => this.search()}>
                     <Icon
                         name="ios-search"
                         size={20}
