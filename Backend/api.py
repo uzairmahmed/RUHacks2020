@@ -3,11 +3,12 @@ from flask_cors import CORS
 from places import mobileGetNearby
 from firestore import firestore
 app = Flask(__name__)
-#app.config["DEBUG"] = False
+
+# Handles user requests from both store and mobile application
 
 CORS(app)
 
-@app.route('/mobile/get-nearby/', methods=['POST'])
+@app.route('/mobile/get-nearby/', methods=['GET'])
 def mobGetNearby():
     reqJson = request.get_json()
     latitude = reqJson['latitude']
@@ -37,7 +38,7 @@ def mobAdjustDemand():
     return jsonify(response)
     
 
-@app.route('/dashboard/get-products/', methods=['POST'])
+@app.route('/dashboard/get-products/', methods=['GET'])
 def dashGetProducts():
     place_id = request.args.get('place_id')
     response = firestore.readAllItems(place_id)
@@ -80,7 +81,7 @@ def dashAddItem():
         response['status']='Error: Create Item Failed'
     return jsonify(response)
 
-@app.route('/dashboard/delete-item/', methods=['POST'])
+@app.route('/dashboard/delete-item/', methods=['DELETE'])
 def dashDeleteItem():
     place_id = request.args.get('place_id')
     item = request.args.get('item')
@@ -92,7 +93,7 @@ def dashDeleteItem():
         response['status']='Error 404'
     return jsonify(response)
 
-@app.route('/dashboard/delete-store/', methods=['POST'])
+@app.route('/dashboard/delete-store/', methods=['DELETE'])
 def dashDeleteStore():
     place_id = request.args.get('place_id')
     response = {}
