@@ -5,7 +5,7 @@
 
 **[https://devpost.com/software/ruhacks2020](https://devpost.com/software/ruhacks2020)**
 
-![logo](https://github.com/uzairmahmed/RUHacks2020/tree/master/logo.png)
+![logo](https://github.com/uzairmahmed/RUHacks2020/tree/master/logo.jpg)
 
 ## Inspiration
 The COVID19 pandemic has given rise to quite a few unforeseen events. At the beginning of this pandemic, we faced a significant shortage in many items that are considered essential such as toilet paper and cleaning supplies. As the market currently stands, baking needs are nowhere to be found as many consumers are turning to pasty making in quarantine. You go from store to store with hopes of finding these items and no luck. Not only is this experience frustrating but also very inefficient
